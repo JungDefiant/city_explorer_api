@@ -17,13 +17,13 @@ app.use(cors()); // configure the app to talk to other local websites without bl
 // DONE: respond to the http://localhost:3000/location route `/location`
 // DONE: send the json data (send meaningful data)
 
-app.get('/data/location', (request, response) => {
+app.get('/location', (request, response) => {
   console.log('hey from the server');
   const dataFromlocationJson = require('./app/data/location.json');
   response.send(dataFromlocationJson);
 });
 
-app.get('/data/weather', (r, res) => {
+app.get('/weather', (r, res) => {
   const dataFromWeatherJson = require('./app/data/weather.json');
   res.send(dataFromWeatherJson);
 });
