@@ -20,3 +20,14 @@
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
+
+## Features Added
+Number and name of feature: Setup
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 4:00 PM
+
+Finish time: 9:00 PM
+
+Actual time needed to complete: 2-1/2 hours
