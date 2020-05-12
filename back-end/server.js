@@ -9,7 +9,7 @@ require('dotenv').config(); //is to configure the local environment
 // App setup (define global variables and configure the server)
 // Global variables
 const PORT = process.env.PORT || 3000; // look to a env variable called PORT, or default to 3000
-const app = express(); // app is our entire server
+const app = express('.'); // app is our entire server
 
 //configs
 app.use(cors()); // configure the app to talk to other local websites without blocking them
@@ -17,7 +17,7 @@ app.use(cors()); // configure the app to talk to other local websites without bl
 // DONE: respond to the http://localhost:3000/location route `/location`
 // DONE: send the json data (send meaningful data)
 
-app.get('/location', (request, response) => {
+app.get('/data/location', (request, response) => {
   console.log('hey from the server');
   const dataFromlocationJson = require('./data/location.json');
   // response.send(dataFromlocationJson);
@@ -34,28 +34,28 @@ app.get('/location', (request, response) => {
 // asks at  http://localhost:3000/restaruants?${location.latitude}x${location.longitude}
 // ignore everything after and including the question mark
 
-app.get('/restaruants', (req, res) => {
-  const restData = require('./data/restaurants.json');
+// app.get('/we', (req, res) => {
+//   const restData = require('./data/restaurants.json');
 
-  // DONE: target useful data (lives here at restData.nearby_restaurants)
-  const nearby_restaurants = restData.nearby_restaurants;
-  console.log(nearby_restaurants);
-  // TODO: pass each thing in that array through a constructor
-  const newRests = [];
-  // nearby_restaurants.forEach(restObj => { // restObj is an object from the nearblyRestaurants array
-  //   newRests.push( new Restaurant(restObj) );
-  // });
+//   // DONE: target useful data (lives here at restData.nearby_restaurants)
+//   const nearby_restaurants = restData.nearby_restaurants;
+//   console.log(nearby_restaurants);
+//   // TODO: pass each thing in that array through a constructor
+//   const newRests = [];
+//   // nearby_restaurants.forEach(restObj => { // restObj is an object from the nearblyRestaurants array
+//   //   newRests.push( new Restaurant(restObj) );
+//   // });
 
-  for(let i = 0; i < nearby_restaurants.length; i++){
-    newRests.push( new Restaurant(nearby_restaurants[i]) );
-  }
+//   for(let i = 0; i < nearby_restaurants.length; i++){
+//     newRests.push( new Restaurant(nearby_restaurants[i]) );
+//   }
 
 
 
-  // TODO: send the resulting array to the front end
+//   // TODO: send the resulting array to the front end
 
-  res.send(newRests);
-});
+//   res.send(newRests);
+// });
 
 
 // only need restaurant, cuisines, locality
@@ -73,7 +73,7 @@ function Restaurant(potatoEntireObject){
 
 
 
-app.get('/weather', (r, res) => {
+app.get('/data/weather', (r, res) => {
   res.send([
     {
       'forecast': 'Partly cloudy until afternoon.',
