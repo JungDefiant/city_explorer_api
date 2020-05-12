@@ -19,15 +19,13 @@ app.use(cors()); // configure the app to talk to other local websites without bl
 
 app.get('/data/location', (request, response) => {
   console.log('hey from the server');
-  const dataFromlocationJson = require('./data/location.json');
-  // response.send(dataFromlocationJson);
+  const dataFromlocationJson = require('./app/data/location.json');
+  response.send(dataFromlocationJson);
+});
 
-  response.send({
-    'search_query': 'seattle',
-    'formatted_query': 'Seattle, WA, USA',
-    'latitude': '47.606210',
-    'longitude': '-122.332071'
-  });
+app.get('/data/weather', (r, res) => {
+  const dataFromWeatherJson = require('./app/data/weather.json');
+  res.send(dataFromWeatherJson);
 });
 
 // DONE: respond to the other request
@@ -62,29 +60,11 @@ app.get('/data/location', (request, response) => {
 // restaurant is nearby[0].restaurant.name
 // cuisines is nearby[0].restaurant.cuisines
 // locality is nearby[0].restaurant.location.locality
-function Restaurant(potatoEntireObject){
-  // if we pass the object over, we do the work of extracting nested properties in a function instead of a single line of a new Restaurant call `new Restaurant()`
-  this.restaurant = potatoEntireObject.restaurant.name;
-  this.cuisines = potatoEntireObject.restaurant.cuisines;
-  this.locality = potatoEntireObject.restaurant.location.locality;
+function Restaurant(dataFromJson){
+  this.restaurant = dataFromJson.restaurant.name;
+  this.cuisines = dataFromJson.restaurant.cuisines;
+  this.locality = dataFromJson.restaurant.location.locality;
 }
-
-
-
-
-
-app.get('/data/weather', (r, res) => {
-  res.send([
-    {
-      'forecast': 'Partly cloudy until afternoon.',
-      'time': 'Mon Jan 01 2001'
-    },
-    {
-      'forecast': 'Mostly cloudy in the morning.',
-      'time': 'Tue Jan 02 2001'
-    },
-  ]);
-});
 
 
 
