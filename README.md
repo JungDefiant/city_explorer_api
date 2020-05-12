@@ -22,12 +22,34 @@
 -->
 
 ## Features Added
+```
 Number and name of feature: Setup
-
 Estimate of time needed to complete: 1 hour
-
 Start time: 4:00 PM
-
 Finish time: 9:00 PM
-
 Actual time needed to complete: 2-1/2 hours
+```
+
+```
+Number and name of feature: Locations
+Estimate of time needed to complete: 1 hour
+Start time: 3:00 PM
+Finish time: 3:40 PM
+Actual time needed to complete: 40 minutes
+```
+
+```
+Number and name of feature: Weather
+Estimate of time needed to complete: 30 minutes
+Start time: 3:40 PM
+Finish time: 3:50 PM
+Actual time needed to complete: 40 minutes
+```
+
+```
+Number and name of feature: Error
+Estimate of time needed to complete: 1 hour
+Start time: 4:00 PM
+Finish time: _
+Actual time needed to complete: _
+```
