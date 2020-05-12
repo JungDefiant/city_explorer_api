@@ -23,11 +23,13 @@ function Location(search_query, formatted_query, latitude, longitude) {
 }
 
 // Returns HTML GET /weather with contents of weather.json
-app.get('/weather', (r, res) => {
+app.get('/weather', (request, response) => {
   const dataFromJson = require('./data/weather.json');
   const weatherArr = [];
-  dataFromJson.data.forEach(val => weatherArr.push(new Weather(val.weather.description, new Date(val.datetime).toDateString())) );
-  res.send(weatherArr);
+  // dataFromJson.data.forEach(val => weatherArr.push(new Weather(val.weather.description, new Date(val.datetime).toDateString())) );
+  response.send(dataFromJson.data.map(val => {
+    return new Weather(val.weather.description, new Date(val.datetime).toDateString());
+  }));
 });
 
 // Constructs a Weather object to be displayed
@@ -36,11 +38,9 @@ function Weather(forecast, timestamp) {
   this.timestamp = timestamp;
 }
 
-// Constructs a Restaurant object to be displayed
-function Restaurant(dataFromJson) {
-  this.restaurant = data.restaurant.name;
-  this.cuisines = dataFromJson.restaurant.cuisines;
-  this.locality = dataFromJson.restaurant.location.locality;
+function catchError(response, error) {
+  console.log(error);
+  response.send(error).status(500);
 }
 
 // Runs the server
