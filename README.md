@@ -11,6 +11,10 @@
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+--> Express
+--> CORS
+--> Superagent
+--> Dotenv
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
@@ -19,7 +23,8 @@
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
--->
+--> Nicco Ryan: Assisted with Lab 7 for Location Refactor and Error.
+--> David P.: Collaborated on Lab 7 for Location Refactor and Error.
 
 ## Features Added
 ```
@@ -49,7 +54,32 @@ Actual time needed to complete: 40 minutes
 ```
 Number and name of feature: Error
 Estimate of time needed to complete: 1 hour
-Start time: 4:00 PM
-Finish time: _
-Actual time needed to complete: _
+Start time: 4:30 PM
+Finish time: 4:40 PM
+Actual time needed to complete: 10 minutes
+Note: Implemented during location refactor
+```
+
+```
+Number and name of feature: Location Refactor
+Estimate of time needed to complete: 1 hour
+Start time: 4:02 PM
+Finish time: 5:05 PM
+Actual time needed to complete: ~1 hour
+```
+
+```
+Number and name of feature: Weather Refactor
+Estimate of time needed to complete: 1 hour
+Start time: 4:30 PM
+Finish time: 5:00 PM
+Actual time needed to complete: 30 minutes
+```
+
+```
+Number and name of feature: Trails
+Estimate of time needed to complete: 30 minutes
+Start time: 5:05 PM
+Finish time: 5:00 PM
+Actual time needed to complete: 1 hour
 ```
