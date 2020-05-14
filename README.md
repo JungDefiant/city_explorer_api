@@ -71,15 +71,15 @@ Actual time needed to complete: ~1 hour
 ```
 Number and name of feature: Weather Refactor
 Estimate of time needed to complete: 1 hour
-Start time: 4:30 PM
-Finish time: 5:00 PM
-Actual time needed to complete: 30 minutes
+Start time: 4:32 PM
+Finish time: 5:23 PM
+Actual time needed to complete: ~50 minutes
 ```
 
 ```
 Number and name of feature: Trails
 Estimate of time needed to complete: 30 minutes
-Start time: 5:05 PM
-Finish time: 5:00 PM
-Actual time needed to complete: 1 hour
+Start time: _
+Finish time: _
+Actual time needed to complete: _
 ```
