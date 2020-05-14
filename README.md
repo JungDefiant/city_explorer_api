@@ -11,10 +11,10 @@
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
---> Express
---> CORS
---> Superagent
---> Dotenv
+- Express
+- CORS
+- Superagent
+- Dotenv
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
@@ -23,8 +23,8 @@
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
---> Nicco Ryan: Assisted with Lab 7 for Location Refactor and Error.
---> David P.: Collaborated on Lab 7 for Location Refactor and Error.
+- Nicco Ryan: Assisted with Lab 7 for Location Refactor and Error.
+- David P.: Collaborated on Lab 7 for Location Refactor and Error.
 
 ## Features Added
 ```
