@@ -11,9 +11,9 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const app = express('.');
 app.use(cors());
-const client = new pg.Client(process.env.DATABASE_URL);
-client.on('error', console.error);
-client.connect();
+// const client = new pg.Client(process.env.DATABASE_URL);
+// client.on('error', console.error);
+// client.connect();
 
 // EXAMPLE SQL SELECTION
 // app.get('/', (request, response) => {
@@ -70,7 +70,9 @@ app.get('/weather', (request, response) => {
   superagent.get(url)
     .query(queryParams)
     .then(result => {
-      const weatherArr = result.body.data.map(val => { return new Weather(val.weather.description, new Date(val.datetime).toDateString()); });
+      const weatherArr = result.body.data.map(val => { 
+        return new Weather(val.weather.description, new Date(val.datetime).toDateString()); 
+      });
       console.log(weatherArr);
       response.send(weatherArr).status(200);
     })
@@ -83,6 +85,48 @@ app.get('/weather', (request, response) => {
 function Weather(forecast, time) {
   this.forecast = forecast;
   this.time = time;
+}
+
+// Returns HTML GET /weather with contents of weather.json
+app.get('/trails', (request, response) => {
+  const url = 'https://www.hikingproject.com/data/get-trails';
+
+  // Set query parameters for Weather API
+  const queryParams = {
+    key: process.env.TRAIL_API_KEY,
+    lat: request.query.latitude,
+    lon: request.query.longitude,
+    format: 'json'
+  }
+
+  // Get data from Weather API and send array of weather data as response
+  superagent.get(url)
+    .query(queryParams)
+    .then(result => {
+      console.log(Object.keys(result.body.trails));
+      const trailArr = result.body.trails.map((val, ind) => { 
+        if(ind < 10) return new Trail(val); 
+      });
+      console.log(trailArr);
+      response.send(trailArr).status(200);
+    })
+    .catch(error => {
+      catchError(response, error);
+    });
+});
+
+// Constructs a Weather object to be displayed
+function Trail(trailData) {
+  this.name = trailData.name;
+  this.location = trailData.location;
+  this.length = trailData.length;
+  this.stars = trailData.stars;
+  this.star_votes = trailData.star_votes;
+  this.summary = trailData.summary;
+  this.trail_url = trailData.trail_url;
+  this.conditions = trailData.conditions;
+  this.condition_date = trailData.condition_date;
+  this.condition_time = trailData.condition_time;
 }
 
 function catchError(response, error) {
