@@ -83,3 +83,11 @@ Start time: _
 Finish time: _
 Actual time needed to complete: _
 ```
+
+```
+Number and name of feature: SQL Database
+Estimate of time needed to complete: 30 minutes
+Start time: 5:23 PM
+Finish time: _
+Actual time needed to complete: _
+```
