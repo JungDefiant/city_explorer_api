@@ -23,8 +23,8 @@
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
-- Nicco Ryan: Assisted with Lab 7 for Location Refactor and Error.
-- David P.: Collaborated on Lab 7 for Location Refactor and Error.
+- **Nicco Ryan:** Assisted with Lab 7 for Location Refactor and Error.
+- **David P.:** Collaborated on Lab 7 for Location Refactor and Error.
 
 ## Features Added
 ```
