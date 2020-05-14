@@ -79,9 +79,9 @@ Actual time needed to complete: ~50 minutes
 ```
 Number and name of feature: Trails
 Estimate of time needed to complete: 30 minutes
-Start time: _
-Finish time: _
-Actual time needed to complete: _
+Start time: 5:38 PM
+Finish time: 5:55 PM
+Actual time needed to complete: 17 minutes
 ```
 
 ```
