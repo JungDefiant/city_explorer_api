@@ -9,9 +9,6 @@ const PORT = process.env.PORT || 3000;
 const app = express('.');
 app.use(cors());
 
-
-
-
 // Returns HTML GET /location with contents of location.json
 app.get('/location', (request, response) => {
   const url = 'https://us1.locationiq.com/v1/search.php';
@@ -32,7 +29,7 @@ app.get('/location', (request, response) => {
     .catch(error => {
       console.log(error);
       response.send(error).status(500);
-    })
+    });
 });
 
 // Returns a location object to be displayed
@@ -45,11 +42,27 @@ function Location(search_query, formatted_query, latitude, longitude) {
 
 // Returns HTML GET /weather with contents of weather.json
 app.get('/weather', (request, response) => {
-  const dataFromJson = require('./data/weather.json');
+  const url = 'https://api.weatherbit.io/v2.0/current';
+  const queryParams = {
+    key: process.env.WEATHER_API_KEY,
+    lat: request.query.latitude,
+    lon: request.query.longitude,
+    format: 'json'
+  }
   const weatherArr = [];
-  response.send(dataFromJson.data.map(val => {
-    return new Weather(val.weather.description, new Date(val.datetime).toDateString());
-  }));
+  // response.send(dataFromJson.data.map(val => {
+  //   return new Weather(val.weather.description, new Date(val.datetime).toDateString());
+  // }));
+  superagent.get(url)
+    .query(queryParams)
+    .then(result => {
+      console.log(Object.keys(result.body.data[0]).toString());
+      response.send(result.body.data.map(val => { return new Weather(val.weather.description, new Date(val.datetime).toDateString()); })).status(200);
+    })
+    .catch(error => {
+      console.log(error);
+      response.send(error).status(500);
+    });
 });
 
 // Constructs a Weather object to be displayed
