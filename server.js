@@ -4,12 +4,26 @@
 const express = require('express');
 const cors = require('cors');
 const superagent = require('superagent');
+const pg = require('pg');
 require('dotenv').config();
 
 // Set configs
 const PORT = process.env.PORT || 3000;
 const app = express('.');
 app.use(cors());
+const client = new pg.Client(process.env.DATABASE_URL);
+client.on('error', console.error);
+client.connect();
+
+// EXAMPLE SQL SELECTION
+// app.get('/', (request, response) => {
+//   const sqlQuery = 'SELECT * FROM locations'
+//   client.query(sqlQuery)
+//     .then(results => {
+//       response.send(results.rows);
+//     })
+//     .catch(console.error);
+// });
 
 // Returns HTML GET /location with contents of location.json
 app.get('/location', (request, response) => {
