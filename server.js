@@ -70,10 +70,9 @@ app.get('/weather', (request, response) => {
   superagent.get(url)
     .query(queryParams)
     .then(result => {
-      const weatherArr = result.body.data.map(val => { 
-        return new Weather(val.weather.description, new Date(val.datetime).toDateString()); 
+      const weatherArr = result.body.data.map(val => {
+        return new Weather(val.weather.description, new Date(val.datetime).toDateString());
       });
-      console.log(weatherArr);
       response.send(weatherArr).status(200);
     })
     .catch(error => {
@@ -87,11 +86,11 @@ function Weather(forecast, time) {
   this.time = time;
 }
 
-// Returns HTML GET /weather with contents of weather.json
+// Returns HTML GET /trails
 app.get('/trails', (request, response) => {
   const url = 'https://www.hikingproject.com/data/get-trails';
 
-  // Set query parameters for Weather API
+  // Set query parameters for Trails API
   const queryParams = {
     key: process.env.TRAIL_API_KEY,
     lat: request.query.latitude,
@@ -99,15 +98,13 @@ app.get('/trails', (request, response) => {
     format: 'json'
   }
 
-  // Get data from Weather API and send array of weather data as response
+  // Get data from Trails API and send array of trails data as response
   superagent.get(url)
     .query(queryParams)
     .then(result => {
-      console.log(Object.keys(result.body.trails));
-      const trailArr = result.body.trails.map((val, ind) => { 
-        if(ind < 10) return new Trail(val); 
+      const trailArr = result.body.trails.map((val, ind) => {
+        if (ind < 10) return new Trail(val);
       });
-      console.log(trailArr);
       response.send(trailArr).status(200);
     })
     .catch(error => {
@@ -115,7 +112,7 @@ app.get('/trails', (request, response) => {
     });
 });
 
-// Constructs a Weather object to be displayed
+// Constructs a Trails object to be displayed
 function Trail(trailData) {
   this.name = trailData.name;
   this.location = trailData.location;
@@ -127,6 +124,44 @@ function Trail(trailData) {
   this.conditions = trailData.conditions;
   this.condition_date = trailData.condition_date;
   this.condition_time = trailData.condition_time;
+}
+
+// Returns HTML GET /movies
+app.get('/movies', (request, response) => {
+  const url = 'https://api.themoviedb.org/3/search/movie';
+
+  // Set query parameters for Movies API
+  const queryParams = {
+    api_key: process.env.MOVIE_API_KEY,
+    query: request.query.search_query
+  }
+
+  // Get data from Movies API and send array of movies data as response
+  superagent.get(url)
+    .query(queryParams)
+    .then(result => {
+      console.log(Object.keys(result.body.results).toString());
+      const movieArr = result.body.results.map((val, ind) => {
+        if (ind < 20) {
+          return new Movie(val);
+        }
+      });
+      response.send(movieArr).status(200);
+    })
+    .catch(error => {
+      catchError(response, error);
+    });
+});
+
+// Constructs a Movie object to be displayed
+function Movie(movieData) {
+  this.title = movieData.title;
+  this.overview = movieData.overview;
+  this.average_votes = movieData.average_votes;
+  this.total_votes = movieData.total_votes;
+  this.image_url = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/' + movieData.poster_path;
+  this.popularity = movieData.popularity;
+  this.released_on = movieData.release_date;
 }
 
 function catchError(response, error) {
