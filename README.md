@@ -91,3 +91,11 @@ Start time: 5:23 PM
 Finish time: _
 Actual time needed to complete: _
 ```
+
+```
+Number and name of feature: Movies
+Estimate of time needed to complete: 1 hour
+Start time: 3:45 PM
+Finish time: 5:48 PM
+Actual time needed to complete: 1 hour, 3 minutes
+```
